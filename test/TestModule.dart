@@ -3,10 +3,10 @@ import '../lib/scaleapp.dart';
 
 main() {
   TestSandbox sandBox = new TestSandbox();
-  Mediator mediator = new Mediator();
+  Application app = new Application();
   
   test('Test start / stop', () {
-    TestModule module = new TestModule(sandBox, mediator);
+    TestModule module = new TestModule(sandBox);
     
     module.start();
     expect(module.isRunning, true, reason:"Module is running");
@@ -16,13 +16,13 @@ main() {
   });
   
   test('Test register / unregister', () {
-    TestModule module = new TestModule(sandBox, mediator);
+    TestModule module = new TestModule(sandBox);
     
-    Module.registerModule(module, "TestModule");
-    expect(Module.getModule("TestModule") == module, true, reason:"Module was registered");
+    app.registerModule(module, "TestModule");
+    expect(app.getModule("TestModule") == module, true, reason:"Module was registered");
     
-    Module.unregisterModule("TestModule");
-    expect(Module.getModule("TestModule") == null, true, reason:"Module was unregistered");
+    app.unregisterModule("TestModule");
+    expect(app.getModule("TestModule") == null, true, reason:"Module was unregistered");
   });
 }
 
@@ -44,7 +44,7 @@ class TestModule extends Module{
     this.lastMessage = "started";
   }
   
-  TestModule(Sandbox sandBox, Mediator mediator) : super(sandBox, mediator);
+  TestModule(Sandbox sandBox) : super(sandBox);
   
   void receiveMessage(String channelName, String eventName, data) {
     this.lastChannel = channelName;

@@ -1,5 +1,7 @@
 part of scaleapp;
 
 abstract class Sandbox {
-    obtain(String objectName);
+  Mediator mediator = new Mediator();
+  
+  obtain(String objectName);
 }
