@@ -1,4 +1,4 @@
 scaleapp-dart
 =============
 
-Official Port of the JavaScript Framework scaleApp
+Official Port and Variant of the JavaScript Framework scaleApp
