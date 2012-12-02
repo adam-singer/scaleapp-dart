@@ -14,6 +14,16 @@ main() {
     module.stop();
     expect(module.isRunning, false, reason:"Module is not running");
   });
+  
+  test('Test register / unregister', () {
+    TestModule module = new TestModule(sandBox, mediator);
+    
+    Module.registerModule(module, "TestModule");
+    expect(Module.getModule("TestModule") == module, true, reason:"Module was registered");
+    
+    Module.unregisterModule("TestModule");
+    expect(Module.getModule("TestModule") == null, true, reason:"Module was unregistered");
+  });
 }
 
 class TestSandbox extends Sandbox{
