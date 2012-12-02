@@ -1,5 +1,4 @@
 library scaleapp;
-import 'dart:mirrors';
 
 part 'src/Sandbox.dart';
 part 'src/Mediator.dart';
