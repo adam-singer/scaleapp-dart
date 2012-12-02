@@ -1,7 +1,7 @@
 part of scaleapp;
 
 class Mediator {
-  final Map<String, Map<String, List<Module>>> _channels = new Map<String, Map<String, List<Module>>>();
+  final Map<String, Map<String, List<Module>>> channels = new Map<String, Map<String, List<Module>>>();
   
   void subscribe(String channelName, String eventName, Module subscriber) {
     List<Module> subscribers = _getSubscriberList(channelName, eventName);
@@ -21,9 +21,7 @@ class Mediator {
   
   void publish(String channelName, String eventName, data) {
     _getSubscriberList(channelName, eventName).forEach((Module subscriber) {
-      if (subscriber.isRunning) {
-        subscriber.receiveMessage(channelName, eventName, data);
-      }
+       subscriber.receiveMessage(channelName, eventName, data);
     });
   }
   
@@ -32,12 +30,12 @@ class Mediator {
     List<Module> subscribers = null;
     
     //if not exists, create the map representing the channel on the spot 
-    if (!_channels.containsKey(channelName)) {
+    if (!channels.containsKey(channelName)) {
       eventMap = new Map<String, List<Module>>();
-      _channels[channelName] = eventMap;
+      channels[channelName] = eventMap;
     }
     else {
-      eventMap = _channels[channelName];
+      eventMap = channels[channelName];
     }
     
     //if the event and its subscriberlist doenst exists, create it

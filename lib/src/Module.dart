@@ -25,6 +25,14 @@ abstract class Module {
     }
   }
   
+  void unsubscribeFromEventsInChannels(Map<String, List<String>> channelEventMapping) {
+    for (String channelName in channelEventMapping.keys) {
+      channelEventMapping[channelName].forEach((String eventName) {
+        this.unsubscribe(channelName, eventName);
+      });
+    }
+  }
+  
   void subscribe(String channelName, String eventName) {
     mediator.subscribe(channelName, eventName, this);
   }
