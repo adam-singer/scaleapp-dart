@@ -32,10 +32,10 @@ abstract class Module {
   }
   
   void subscribe(String channelName, String eventName) {
-    this.sandBox.mediator.subscribe(channelName, eventName, this);
+    this.sandBox.subscribe(channelName, eventName, this);
   }
   
   void unsubscribe(String channelName, String eventName) {
-    this.sandBox.mediator.unsubscribe(channelName, eventName, this);
+    this.sandBox.unsubscribe(channelName, eventName, this);
   }
 }
