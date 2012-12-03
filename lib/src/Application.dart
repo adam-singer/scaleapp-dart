@@ -3,6 +3,7 @@ part of scaleapp;
 class Application {
   final Map<String, Module> _modules = new Map<String, Module>();
   final Map<String, Sandbox> _sandboxes = new Map<String, Sandbox>();
+  final mediator = new Mediator();
   
   void registerModule(Module instance, String moduleId) {
     _modules[moduleId] = instance;
