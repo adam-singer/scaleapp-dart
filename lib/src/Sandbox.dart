@@ -1,12 +1,12 @@
 part of scaleapp;
 
 class Sandbox {
-  Application app;
+  Core core;
   
-  Sandbox(Application this.app);
+  Sandbox(Core this.core);
   
   //just a facade, override to have controll over publishing / subscribtion
-  void subscribe(String channelName, String eventName, Module subscriber) => this.app.mediator.subscribe(channelName, eventName, subscriber);
-  void unsubscribe(String channelName, String eventName, Module subscriber) => this.app.mediator.unsubscribe(channelName, eventName, subscriber);
-  void publish(String channelName, String eventName, data) => this.app.mediator.publish(channelName, eventName, data);
+  void subscribe(String channelName, String eventName, Module subscriber) => this.core.mediator.subscribe(channelName, eventName, subscriber);
+  void unsubscribe(String channelName, String eventName, Module subscriber) => this.core.mediator.unsubscribe(channelName, eventName, subscriber);
+  void publish(String channelName, String eventName, data) => this.core.mediator.publish(channelName, eventName, data);
 }

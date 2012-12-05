@@ -2,33 +2,33 @@ import '../packages/unittest/unittest.dart';
 import '../lib/scaleapp.dart';
 
 main() {
- Application app = new Application();
- Sandbox sandBox = new Sandbox(app);
+ Core core = new Core();
+ Sandbox sandBox = new Sandbox(core);
  
  test('Test simple subscribe / unsubscribe', () {
    TestModule module = new TestModule(sandBox);
    
    module.subscribe("channel", "event");
-   expect(app.mediator.channels["channel"]["event"][0] == module, true, reason:"Module was subscribed");
+   expect(core.mediator.channels["channel"]["event"][0] == module, true, reason:"Module was subscribed");
    
    module.unsubscribe("channel", "event");
-   expect(app.mediator.channels["channel"]["event"].length, 0, reason:"Module was unsubscribed");
+   expect(core.mediator.channels["channel"]["event"].length, 0, reason:"Module was unsubscribed");
  });
  
  test('Test nested subscribe / unsubscribe', () {
    TestModule module = new TestModule(sandBox);
    
    module.subscribeToEventsInChannels({"channel1" : ["event1", "event2"], "channel2" : ["event1", "event2"]});
-   expect(app.mediator.channels["channel1"]["event1"][0] == module, true, reason:"Module was subscribed");
-   expect(app.mediator.channels["channel1"]["event2"][0] == module, true, reason:"Module was subscribed");
-   expect(app.mediator.channels["channel2"]["event1"][0] == module, true, reason:"Module was subscribed");
-   expect(app.mediator.channels["channel2"]["event2"][0] == module, true, reason:"Module was subscribed");
+   expect(core.mediator.channels["channel1"]["event1"][0] == module, true, reason:"Module was subscribed");
+   expect(core.mediator.channels["channel1"]["event2"][0] == module, true, reason:"Module was subscribed");
+   expect(core.mediator.channels["channel2"]["event1"][0] == module, true, reason:"Module was subscribed");
+   expect(core.mediator.channels["channel2"]["event2"][0] == module, true, reason:"Module was subscribed");
    
    module.unsubscribeFromEventsInChannels({"channel1" : ["event1", "event2"], "channel2" : ["event1", "event2"]});
-   expect(app.mediator.channels["channel1"]["event1"].length, 0, reason:"Module was unsubscribed");
-   expect(app.mediator.channels["channel1"]["event2"].length, 0, reason:"Module was unsubscribed");
-   expect(app.mediator.channels["channel2"]["event1"].length, 0, reason:"Module was unsubscribed");
-   expect(app.mediator.channels["channel2"]["event2"].length, 0, reason:"Module was unsubscribed");
+   expect(core.mediator.channels["channel1"]["event1"].length, 0, reason:"Module was unsubscribed");
+   expect(core.mediator.channels["channel1"]["event2"].length, 0, reason:"Module was unsubscribed");
+   expect(core.mediator.channels["channel2"]["event1"].length, 0, reason:"Module was unsubscribed");
+   expect(core.mediator.channels["channel2"]["event2"].length, 0, reason:"Module was unsubscribed");
  });
  
  test('Test publish & receive Message', () {

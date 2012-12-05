@@ -3,8 +3,8 @@ import '../lib/scaleapp.dart';
 
 main() {
 
-  Application app = new Application();
-  Sandbox sandBox = new Sandbox(app);
+  Core core = new Core();
+  Sandbox sandBox = new Sandbox(core);
 
   test('Test start / stop', () {
     TestModule module = new TestModule(sandBox);
@@ -19,11 +19,11 @@ main() {
   test('Test register / unregister', () {
     TestModule module = new TestModule(sandBox);
 
-    app.registerModule(module, "TestModule");
-    expect(app.getModule("TestModule") == module, true, reason:"Module was registered");
+    core.registerModule(module, "TestModule");
+    expect(core.getModule("TestModule") == module, true, reason:"Module was registered");
 
-    app.unregisterModule("TestModule");
-    expect(app.getModule("TestModule") == null, true, reason:"Module was unregistered");
+    core.unregisterModule("TestModule");
+    expect(core.getModule("TestModule") == null, true, reason:"Module was unregistered");
   });
 }
 
