@@ -4,7 +4,7 @@ import '../lib/scaleapp.dart';
 main() {
 
   Core core = new Core();
-  Sandbox sandBox = new Sandbox(core);
+  Sandbox sandBox = new TestSandbox(core);
 
   test('Test start / stop', () {
     TestModule module = new TestModule(sandBox);
@@ -25,6 +25,14 @@ main() {
     core.unregisterModule("TestModule");
     expect(core.getModule("TestModule") == null, true, reason:"Module was unregistered");
   });
+}
+
+class TestSandbox extends Sandbox {
+  TestSandbox(Core core) : super(core);
+  
+  dynamic obtain(String objectName, {dynamic optArgs}) {
+    return null;
+  }
 }
 
 class TestModule extends Module{

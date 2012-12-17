@@ -3,7 +3,7 @@ import '../lib/scaleapp.dart';
 
 main() {
  Core core = new Core();
- Sandbox sandBox = new Sandbox(core);
+ Sandbox sandBox = new TestSandbox(core);
  
  test('Test simple subscribe / unsubscribe', () {
    TestModule module = new TestModule(sandBox);
@@ -95,6 +95,14 @@ main() {
    expect(module.lastEventName == null, true, reason:"Unsubscribed from 'event2'");
    expect(module.lastData == null, true, reason:"Unsubscribed from 'channel'");
  });
+}
+
+class TestSandbox extends Sandbox {
+  TestSandbox(Core core) : super(core);
+  
+  dynamic obtain(String objectName, {dynamic optArgs}) {
+    return null;
+  }
 }
 
 class TestModule extends Module{

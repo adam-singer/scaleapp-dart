@@ -1,9 +1,11 @@
 part of scaleapp;
 
-class Sandbox {
+abstract class Sandbox {
   Core core;
   
   Sandbox(Core this.core);
+  
+  dynamic obtain(String objectName, {dynamic optArgs});
   
   //just a facade, override to have controll over publishing / subscribtion
   void subscribe(String channelName, String eventName, Module subscriber) => this.core.mediator.subscribe(channelName, eventName, subscriber);

@@ -1,0 +1,38 @@
+#module-todolist {
+	display: inline;
+}
+
+#module-todolist > ul {
+	width: 33.33%;
+	margin-left:33.33%;
+
+	list-style: none;
+	height: 75%;
+	overflow-y: auto;
+	
+	> li > div {
+		padding: 0.5em;
+		text-align: left;
+		font-weight: 600;
+		font-size: 1.5em;
+		
+		> a {
+			margin-top: 5px;
+			margin-left: .5em;
+			width: 15px;
+			height:15px;
+		}
+	}
+}
+
+#module-todolist > form {
+	.clearfix();
+	width: 33.33%;
+	margin-left: 33.33%;
+	> input, button {
+		float: left;
+	}
+	> button {
+		margin-left: 1em;
+	}
+}
