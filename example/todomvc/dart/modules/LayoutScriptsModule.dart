@@ -11,7 +11,6 @@ class LayoutScriptsModule extends Module{
   }
   
   void receiveMessage(String channelName, String eventName, data) {
-    if (channelName == 'ui') {
       switch (eventName) {
         case 'layout':
           DivElement viewPort = this.sandBox.obtain("viewport");
@@ -19,6 +18,5 @@ class LayoutScriptsModule extends Module{
           viewPort.style.top = "${navbar.clientHeight}px";        
           break;
       }  
-    }
   }
 }

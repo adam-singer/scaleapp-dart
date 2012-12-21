@@ -1,5 +1,5 @@
-name:  scaleapp
-description:  Official Port of the JavaScript Framework scaleApp
-
+name: scaleapp
+description: Official Port of the JavaScript Framework scaleApp
 dependencies:
-  unittest: { sdk: unittest }
+  unittest: any
+  uuid: any
