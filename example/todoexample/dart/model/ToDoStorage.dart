@@ -1,4 +1,4 @@
-part of scaleAppTodoMVC;
+part of scaleAppTodoExample;
 
 class ToDoStorage {
   

@@ -1,4 +1,4 @@
-part of scaleAppTodoMVC;
+part of scaleAppTodoExample;
 
 class AboutModule extends Module{
   DivElement moduleView;

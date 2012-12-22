@@ -1,4 +1,4 @@
-library scaleAppTodoMVC;
+library scaleAppTodoExample;
 import 'dart:html';
 import '../../lib/scaleapp.dart';
 
@@ -15,11 +15,11 @@ part 'dart/modules/NavigationModule.dart';
 part 'dart/modules/AboutModule.dart';
 part 'dart/modules/LayoutScriptsModule.dart';
 part 'dart/modules/ToDoListModule.dart';
-part 'dart/TodoMVCSandbox.dart';
+part 'dart/TodoExampleSandbox.dart';
 
-class TodoMVCExampleApplication extends Core {
+class TodoExampleApplication extends Core {
   void run() {
-   TodoMVCSandbox sandBox = new TodoMVCSandbox(this);
+    TodoExampleSandbox sandBox = new TodoExampleSandbox(this);
    
    this.registerModule(new NavigationModule(sandBox), "NavigationModule");
    this.registerModule(new AboutModule(sandBox), "AboutModule");
@@ -39,4 +39,4 @@ class TodoMVCExampleApplication extends Core {
   }
 }
 
-main() => new TodoMVCExampleApplication().run();
+main() => new TodoExampleApplication().run();

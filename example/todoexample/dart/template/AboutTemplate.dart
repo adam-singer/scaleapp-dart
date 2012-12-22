@@ -1,4 +1,4 @@
-part of scaleAppTodoMVC;
+part of scaleAppTodoExample;
 
 Function AboutTemplate = () {
   return new Element.html('''

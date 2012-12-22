@@ -38,6 +38,9 @@ $$.Closure = {"":"Object;",
 }
 };
 
+$$.Dynamic_ = {"":"Object;"
+};
+
 $$.Null = {"":"Object;"
 };
 
@@ -1408,10 +1411,10 @@ $$.JSString = {"":"Object;",
  is$String: true
 };
 
-$$.TodoMVCExampleApplication = {"":"Core;_modules,_sandboxes,mediator",
+$$.TodoExampleApplication = {"":"Core;_modules,_sandboxes,mediator",
  run$0: function() {
   var sandBox, t1;
-  sandBox = $.TodoMVCSandbox$(this);
+  sandBox = $.TodoExampleSandbox$(this);
   this.registerModule$2($.NavigationModule$(sandBox), "NavigationModule");
   this.registerModule$2($.AboutModule$(sandBox), "AboutModule");
   this.registerModule$2($.ContactModule$(sandBox), "ContactModule");
@@ -1423,9 +1426,9 @@ $$.TodoMVCExampleApplication = {"":"Core;_modules,_sandboxes,mediator",
   this.getModule$1("ToDoListModule").start$0();
   this.getModule$1("LayoutScriptsModule").start$0();
   t1 = this.mediator;
-  t1.publish$3("ui", "layout", null);
-  t1.publish$3("module", "navigation-run", null);
-  t1.publish$3("module", "todolist-run", null);
+  t1.publish$2("ui", "layout");
+  t1.publish$2("module", "navigation-run");
+  t1.publish$2("module", "todolist-run");
 }
 };
 
@@ -1456,7 +1459,7 @@ $$.ContactModule = {"":"Module;moduleView,sandBox,isRunning",
   $.Module.prototype.start$0.call(this);
   this.subscribeToEventsInChannels$1($.makeLiteralMap(["module", ["contact-run", "contact-stop"]]));
 },
- receiveMessage$3: function(channelName, eventName, data) {
+ receiveMessage$3$data: function(channelName, eventName, data) {
   var t1, viewPort, t2;
   switch (eventName) {
     case "contact-run":
@@ -1470,6 +1473,9 @@ $$.ContactModule = {"":"Module;moduleView,sandBox,isRunning",
       this.moduleView.remove$0();
       break;
   }
+},
+ receiveMessage$2: function(channelName, eventName) {
+  return this.receiveMessage$3$data(channelName, eventName, null);
 }
 };
 
@@ -1478,7 +1484,7 @@ $$.NavigationModule = {"":"Module;moduleView,navLinkList,onNavItemClickListener>
   $.Module.prototype.start$0.call(this);
   this.subscribeToEventsInChannels$1($.makeLiteralMap(["module", ["navigation-run", "navigation-stop", "about-run", "about-stop", "contact-run", "contact-stop", "todolist-run", "todolist-stop"]]));
 },
- receiveMessage$3: function(channelName, eventName, data) {
+ receiveMessage$3$data: function(channelName, eventName, data) {
   var t1, activeElement;
   switch (eventName) {
     case "navigation-run":
@@ -1501,6 +1507,9 @@ $$.NavigationModule = {"":"Module;moduleView,navLinkList,onNavItemClickListener>
       break;
   }
 },
+ receiveMessage$2: function(channelName, eventName) {
+  return this.receiveMessage$3$data(channelName, eventName, null);
+},
  setupNavItemClickListener$0: function() {
   this.onNavItemClickListener = new $.NavigationModule_setupNavItemClickListener_anon(this);
 },
@@ -1514,7 +1523,7 @@ $$.AboutModule = {"":"Module;moduleView,sandBox,isRunning",
   $.Module.prototype.start$0.call(this);
   this.subscribeToEventsInChannels$1($.makeLiteralMap(["module", ["about-run", "about-stop"]]));
 },
- receiveMessage$3: function(channelName, eventName, data) {
+ receiveMessage$3$data: function(channelName, eventName, data) {
   var t1, viewPort, t2;
   switch (eventName) {
     case "about-run":
@@ -1528,6 +1537,9 @@ $$.AboutModule = {"":"Module;moduleView,sandBox,isRunning",
       this.moduleView.remove$0();
       break;
   }
+},
+ receiveMessage$2: function(channelName, eventName) {
+  return this.receiveMessage$3$data(channelName, eventName, null);
 }
 };
 
@@ -1536,7 +1548,7 @@ $$.LayoutScriptsModule = {"":"Module;sandBox,isRunning",
   $.Module.prototype.start$0.call(this);
   this.subscribe$2("ui", "layout");
 },
- receiveMessage$3: function(channelName, eventName, data) {
+ receiveMessage$3$data: function(channelName, eventName, data) {
   var t1, viewPort, t2;
   switch (eventName) {
     case "layout":
@@ -1546,6 +1558,9 @@ $$.LayoutScriptsModule = {"":"Module;sandBox,isRunning",
       viewPort.get$style().set$top(t2);
       break;
   }
+},
+ receiveMessage$2: function(channelName, eventName) {
+  return this.receiveMessage$3$data(channelName, eventName, null);
 }
 };
 
@@ -1554,7 +1569,7 @@ $$.ToDoListModule = {"":"Module;moduleView,todoListElement,todoAddButtonElement,
   $.Module.prototype.start$0.call(this);
   this.subscribeToEventsInChannels$1($.makeLiteralMap(["module", ["todolist-run", "todolist-stop"]]));
 },
- receiveMessage$3: function(channelName, eventName, data) {
+ receiveMessage$3$data: function(channelName, eventName, data) {
   var t1, viewPort, t2;
   switch (eventName) {
     case "todolist-run":
@@ -1575,6 +1590,9 @@ $$.ToDoListModule = {"":"Module;moduleView,todoListElement,todoAddButtonElement,
       this.moduleView.remove$0();
       break;
   }
+},
+ receiveMessage$2: function(channelName, eventName) {
+  return this.receiveMessage$3$data(channelName, eventName, null);
 },
  addToList$1: function(text) {
   this.renderToDoListItem$1(this.sandBox.obtain$1("storage-todo").create$1(text));
@@ -1614,7 +1632,7 @@ $$.ToDoListModule = {"":"Module;moduleView,todoListElement,todoAddButtonElement,
 }
 };
 
-$$.TodoMVCSandbox = {"":"Sandbox;toDoStorage,core",
+$$.TodoExampleSandbox = {"":"Sandbox;toDoStorage,core",
  obtain$2$optArgs: function(objectName, optArgs) {
   switch (objectName) {
     case "viewport":
@@ -2376,8 +2394,20 @@ $$.Sandbox = {"":"Object;",
  subscribe$3: function(channelName, eventName, subscriber) {
   return this.core.mediator.subscribe$3(channelName, eventName, subscriber);
 },
- publish$3: function(channelName, eventName, data) {
-  return this.core.mediator.publish$3(channelName, eventName, data);
+ publish$3$data: function(channelName, eventName, data) {
+  var t1, t2;
+  t1 = $ === data;
+  if (t1)
+    data = null;
+  t1 = !t1;
+  t2 = this.core;
+  if (t1)
+    t2.mediator.publish$3$data(channelName, eventName, data);
+  else
+    t2.mediator.publish$2(channelName, eventName);
+},
+ publish$2: function(channelName, eventName) {
+  return this.publish$3$data(channelName, eventName, $);
 }
 };
 
@@ -2389,9 +2419,20 @@ $$.Mediator = {"":"Object;channels",
   if (t1.contains$1(subscribers, subscriber) !== true)
     t1.add$1(subscribers, subscriber);
 },
- publish$3: function(channelName, eventName, data) {
-  var t1 = this._getSubscriberList$2(channelName, eventName);
-  $.getInterceptor$JSArray(t1).forEach$1(t1, new $.Mediator_publish_anon(eventName, data, channelName));
+ publish$3$data: function(channelName, eventName, data) {
+  var t1 = $ === data;
+  if (t1)
+    data = null;
+  if (!t1) {
+    t1 = this._getSubscriberList$2(channelName, eventName);
+    $.getInterceptor$JSArray(t1).forEach$1(t1, new $.Mediator_publish_anon(channelName, eventName, data));
+  } else {
+    t1 = this._getSubscriberList$2(channelName, eventName);
+    $.getInterceptor$JSArray(t1).forEach$1(t1, new $.Mediator_publish_anon0(channelName, eventName));
+  }
+},
+ publish$2: function(channelName, eventName) {
+  return this.publish$3$data(channelName, eventName, $);
 },
  _getSubscriberList$2: function(channelName, eventName) {
   var t1, eventMap, subscribers;
@@ -2425,7 +2466,7 @@ $$.Module = {"":"Object;sandBox>",
     if (t2 < 0 || t2 >= channelEventMapping.length)
       throw $.ioore(t2);
     t3 = channelEventMapping[t2];
-    $.getInterceptor$JSArray(t3).forEach$1(t3, new $.Module_subscribeToEventsInChannels_anon(this, t2));
+    $.getInterceptor$JSArray(t3).forEach$1(t3, new $.Module_subscribeToEventsInChannels_anon(t2, this));
   }
 },
  subscribeToEventsInChannels$1$bailout: function(state0, channelEventMapping) {
@@ -2433,7 +2474,7 @@ $$.Module = {"":"Object;sandBox>",
   for (t1 = channelEventMapping.get$keys(), t1 = $.getInterceptor$JSArray(t1).iterator$0(t1); t1.get$hasNext() === true;) {
     t2 = t1.next$0();
     t3 = $.index(channelEventMapping, t2);
-    $.getInterceptor$JSArray(t3).forEach$1(t3, new $.Module_subscribeToEventsInChannels_anon(this, t2));
+    $.getInterceptor$JSArray(t3).forEach$1(t3, new $.Module_subscribeToEventsInChannels_anon(t2, this));
   }
 },
  subscribe$2: function(channelName, eventName) {
@@ -2450,9 +2491,9 @@ $$.Core = {"":"Object;mediator>",
 }
 };
 
-$$.Module_subscribeToEventsInChannels_anon = {"":"Closure;this_0,channelName_1",
+$$.Module_subscribeToEventsInChannels_anon = {"":"Closure;channelName_0,this_1",
  call$1: function(eventName) {
-  this.this_0.subscribe$2(this.channelName_1, eventName);
+  this.this_1.subscribe$2(this.channelName_0, eventName);
 }
 };
 
@@ -2604,15 +2645,21 @@ $$.NavigationModule_setupNavItemClickListener_anon = {"":"Closure;this_0",
   moduleName = $.index($.getInterceptor$JSString(t1).split$1(t1, "#"), 1);
   t1 = this.this_0;
   if (!$.eqB(moduleName, t1.get$activeModuleName())) {
-    t1.get$sandBox().publish$3("module", $.S(t1.get$activeModuleName()) + "-stop", null);
-    t1.get$sandBox().publish$3("module", $.S(moduleName) + "-run", null);
+    t1.get$sandBox().publish$2("module", $.S(t1.get$activeModuleName()) + "-stop");
+    t1.get$sandBox().publish$2("module", $.S(moduleName) + "-run");
   }
 }
 };
 
-$$.Mediator_publish_anon = {"":"Closure;eventName_0,data_1,channelName_2",
+$$.Mediator_publish_anon = {"":"Closure;channelName_0,eventName_1,data_2",
  call$1: function(subscriber) {
-  subscriber.receiveMessage$3(this.channelName_2, this.eventName_0, this.data_1);
+  subscriber.receiveMessage$3$data(this.channelName_0, this.eventName_1, this.data_2);
+}
+};
+
+$$.Mediator_publish_anon0 = {"":"Closure;channelName_3,eventName_4",
+ call$1: function(subscriber) {
+  subscriber.receiveMessage$2(this.channelName_3, this.eventName_4);
 }
 };
 
@@ -2956,6 +3003,10 @@ $.ioore = function(index) {
   throw $.$$throw($.RangeError$value(index));
 };
 
+$.iae = function(argument) {
+  throw $.$$throw($.ArgumentError$(argument));
+};
+
 $.checkNull = function(object) {
   if (object == null)
     throw $.$$throw($.ArgumentError$(null));
@@ -2991,8 +3042,8 @@ $.toStringWrapper = function() {
   return $.getInterceptor(t1).toString$0(t1);
 };
 
-$.Element_Element$html = function(html) {
-  return $._ElementFactoryProvider_createElement_html(html);
+$.Element_Element$tag = function(tag) {
+  return document.createElement(tag);
 };
 
 $.unwrapException = function(ex) {
@@ -3042,10 +3093,6 @@ $.makeLiteralMap = function(keyValuePairs) {
   return result;
 };
 
-$.iae = function(argument) {
-  throw $.$$throw($.ArgumentError$(argument));
-};
-
 $.invokeClosure = function(closure, isolate, numberOfArguments, arg1, arg2) {
   if ($.eqB(numberOfArguments, 0))
     return new $.invokeClosure_anon(closure).call$0();
@@ -3057,8 +3104,8 @@ $.invokeClosure = function(closure, isolate, numberOfArguments, arg1, arg2) {
     throw $.$$throw($.Exception_Exception("Unsupported number of arguments for wrapped closure"));
 };
 
-$.Element_Element$tag = function(tag) {
-  return document.createElement(tag);
+$.Element_Element$html = function(html) {
+  return $._ElementFactoryProvider_createElement_html(html);
 };
 
 $.convertDartClosureToJS = function(closure, arity) {
@@ -3454,8 +3501,8 @@ $._ElementFactoryProvider_createElement_html = function(html) {
     tag = $.getInterceptor$JSString(t1).toLowerCase$0(t1);
     parentTag = $.CONSTANT5.containsKey$1(tag) === true ? $.CONSTANT5.operator$index$1(tag) : "div";
   } else {
-    tag = null;
     parentTag = "div";
+    tag = null;
   }
   temp = $.Element_Element$tag(parentTag);
   temp.set$innerHtml(html);
@@ -3489,24 +3536,24 @@ $._ChildrenElementList$_wrap = function(element) {
   return new $._ChildrenElementList(element, element.get$$$dom_children());
 };
 
-$.TodoMVCExampleApplication$ = function() {
-  return new $.TodoMVCExampleApplication($.Map_Map(), $.Map_Map(), $.Mediator$());
+$.TodoExampleApplication$ = function() {
+  return new $.TodoExampleApplication($.Map_Map(), $.Map_Map(), $.Mediator$());
 };
 
 $.BodyElementEvents$ = function(_ptr) {
   return new $.BodyElementEvents(_ptr);
 };
 
-$.TodoMVCSandbox$ = function(core) {
-  return new $.TodoMVCSandbox($.ToDoStorage$(), core);
+$.TodoExampleSandbox$ = function(core) {
+  return new $.TodoExampleSandbox($.ToDoStorage$(), core);
 };
 
 $.FilteredElementList$ = function(node) {
   return new $.FilteredElementList(node, node.get$nodes());
 };
 
-$.main = function() {
-  return $.TodoMVCExampleApplication$().run$0();
+$.ToDoStorage$ = function() {
+  return new $.ToDoStorage($.Map_Map(), 1);
 };
 
 $.NavigationModule$ = function(sandbox) {
@@ -3515,16 +3562,16 @@ $.NavigationModule$ = function(sandbox) {
   return t1;
 };
 
+$.main = function() {
+  return $.TodoExampleApplication$().run$0();
+};
+
 $.window = function() {
   return window;
 };
 
 $.document = function() {
   return document;
-};
-
-$.ToDoStorage$ = function() {
-  return new $.ToDoStorage($.Map_Map(), 1);
 };
 
 $.query = function(selector) {
@@ -3827,15 +3874,15 @@ $._convertNativeToDart_Window = function(win) {
   return $._DOMWindowCrossFrame__createSafe(win);
 };
 
+$.FormatException$ = function(message) {
+  return new $.FormatException(message);
+};
+
 $._convertNativeToDart_EventTarget = function(e) {
   if ("setInterval" in e)
     return $._DOMWindowCrossFrame__createSafe(e);
   else
     return e;
-};
-
-$.FormatException$ = function(message) {
-  return new $.FormatException(message);
 };
 
 $.Exception_Exception = function(message) {
@@ -4020,8 +4067,16 @@ $.ElementEvents$ = function(_ptr) {
   return new $.ElementEvents(_ptr);
 };
 
+$._ElementAttributeMap$ = function(element) {
+  return new $._ElementAttributeMap(element);
+};
+
 $.FixedSizeListIterator$ = function(array) {
   return new $.FixedSizeListIterator($.getInterceptor$JSStringJSArray(array).get$length(array), array, 0);
+};
+
+$._FrozenCssClassSet$ = function() {
+  return new $._FrozenCssClassSet();
 };
 
 $.LinkedHashMap_LinkedHashMap = function() {
@@ -4030,10 +4085,6 @@ $.LinkedHashMap_LinkedHashMap = function() {
 
 $.Map_Map = function() {
   return $._HashMapImpl$();
-};
-
-$.EventListenerList$ = function(_ptr, _type) {
-  return new $.EventListenerList(_ptr, _type);
 };
 
 $._LinkedHashMapImpl$ = function() {
@@ -4050,16 +4101,12 @@ $._DOMWindowCrossFrame__createSafe = function(w) {
     return $._DOMWindowCrossFrame$(w);
 };
 
+$.EventListenerList$ = function(_ptr, _type) {
+  return new $.EventListenerList(_ptr, _type);
+};
+
 $._DOMWindowCrossFrame$ = function(_window) {
   return new $._DOMWindowCrossFrame(_window);
-};
-
-$._ElementAttributeMap$ = function(element) {
-  return new $._ElementAttributeMap(element);
-};
-
-$.Events$ = function(_ptr) {
-  return new $.Events(_ptr);
 };
 
 $.DoubleLinkedQueue$ = function() {
@@ -4068,8 +4115,8 @@ $.DoubleLinkedQueue$ = function() {
   return t1;
 };
 
-$._FrozenCssClassSet$ = function() {
-  return new $._FrozenCssClassSet();
+$.Events$ = function(_ptr) {
+  return new $.Events(_ptr);
 };
 
 $.Queue_Queue = function() {
@@ -5823,4 +5870,4 @@ Isolate.$finishIsolateConstructor = function(oldIsolate) {
 };
 }
 
-//@ sourceMappingURL=todomvc.dart.js.map
+//@ sourceMappingURL=todoexample.dart.js.map

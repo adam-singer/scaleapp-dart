@@ -1,4 +1,4 @@
-part of scaleAppTodoMVC;
+part of scaleAppTodoExample;
 
 class NavigationModule extends Module {
   DivElement moduleView;

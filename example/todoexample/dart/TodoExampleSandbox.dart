@@ -1,10 +1,10 @@
-part of scaleAppTodoMVC;
+part of scaleAppTodoExample;
 
-class TodoMVCSandbox extends Sandbox{
+class TodoExampleSandbox extends Sandbox{
 
   ToDoStorage toDoStorage = new ToDoStorage();
   
-  TodoMVCSandbox(Core core) : super(core);
+  TodoExampleSandbox(Core core) : super(core);
   
   dynamic obtain(String objectName, {dynamic optArgs}) {
      switch(objectName) {

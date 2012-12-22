@@ -1,4 +1,4 @@
-part of scaleAppTodoMVC;
+part of scaleAppTodoExample;
 
 Function ToDoListViewTemplate = () {
   return new Element.html('''
