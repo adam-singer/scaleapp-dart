@@ -36,7 +36,7 @@ main() {
    module.subscribe("channel", "event");
    var data = {"message" : "data"};
    
-   sandBox.publish("channel", "event", data);
+   sandBox.publish("channel", "event", data:data);
    expect(module.lastChannel == "channel", true, reason:"Received message on 'channel'");
    expect(module.lastEventName == "event", true, reason:"Received message 'event'");
    expect(module.lastData == data, true, reason:"Received dataobject withing message");
@@ -46,7 +46,7 @@ main() {
    module.lastData = null;
    
    module.unsubscribe("channel", "event");
-   sandBox.publish("channel", "event", data);
+   sandBox.publish("channel", "event", data:data);
    
    expect(module.lastChannel == null, true, reason:"Unsubscribed from 'channel'");
    expect(module.lastEventName == null, true, reason:"Unsubscribed from 'event'");
@@ -58,22 +58,22 @@ main() {
    module.subscribeToEventsInChannels({"channel1" : ["event1", "event2"], "channel2" : ["event1", "event2"]});
    var data = {"message" : "data"};
    
-   sandBox.publish("channel1", "event1", data);
+   sandBox.publish("channel1", "event1", data:data);
    expect(module.lastChannel == "channel1", true, reason:"Received message on 'channel1'");
    expect(module.lastEventName == "event1", true, reason:"Received message 'event1'");
    expect(module.lastData == data, true, reason:"Received dataobject withing message");
    
-   sandBox.publish("channel1", "event2", data);
+   sandBox.publish("channel1", "event2", data:data);
    expect(module.lastChannel == "channel1", true, reason:"Received message on 'channel1'");
    expect(module.lastEventName == "event2", true, reason:"Received message 'event2'");
    expect(module.lastData == data, true, reason:"Received dataobject withing message");
    
-   sandBox.publish("channel2", "event1", data);
+   sandBox.publish("channel2", "event1", data:data);
    expect(module.lastChannel == "channel2", true, reason:"Received message on 'channel2'");
    expect(module.lastEventName == "event1", true, reason:"Received message 'event1'");
    expect(module.lastData == data, true, reason:"Received dataobject withing message");
    
-   sandBox.publish("channel2", "event2", data);
+   sandBox.publish("channel2", "event2", data:data);
    expect(module.lastChannel == "channel2", true, reason:"Received message on 'channel2'");
    expect(module.lastEventName == "event2", true, reason:"Received message 'event2'");
    expect(module.lastData == data, true, reason:"Received dataobject withing message");
@@ -83,13 +83,13 @@ main() {
    module.lastData = null;
    
    module.unsubscribeFromEventsInChannels({"channel1" : ["event2"], "channel2" : ["event2"]});
-   sandBox.publish("channel1", "event2", data);
+   sandBox.publish("channel1", "event2", data:data);
    
    expect(module.lastChannel == null, true, reason:"Unsubscribed from 'channel1' event");
    expect(module.lastEventName == null, true, reason:"Unsubscribed from 'event2'");
    expect(module.lastData == null, true, reason:"Unsubscribed from 'channel'");
    
-   sandBox.publish("channel2", "event2", data);
+   sandBox.publish("channel2", "event2", data:data);
    
    expect(module.lastChannel == null, true, reason:"Unsubscribed from 'channel2' event");
    expect(module.lastEventName == null, true, reason:"Unsubscribed from 'event2'");
@@ -121,7 +121,7 @@ class TestModule extends Module{
   
   TestModule(Sandbox sandBox) : super(sandBox);
   
-  void receiveMessage(String channelName, String eventName, data) {
+  void receiveMessage(String channelName, String eventName,  {dynamic data}) {
     this.lastChannel = channelName;
     this.lastEventName = eventName;
     this.lastData = data;

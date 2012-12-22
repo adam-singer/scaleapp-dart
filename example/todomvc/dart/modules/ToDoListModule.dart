@@ -22,7 +22,7 @@ class ToDoListModule extends Module {
     this.subscribeToEventsInChannels({'module' : ['todolist-run', 'todolist-stop']});
   }
   
-  void receiveMessage(String channelName, String eventName, data) {
+  void receiveMessage(String channelName, String eventName,  {dynamic data}) {
       switch (eventName) {
         case 'todolist-run':
             DivElement viewPort = this.sandBox.obtain('viewport');

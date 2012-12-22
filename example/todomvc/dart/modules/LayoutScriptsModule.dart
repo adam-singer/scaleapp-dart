@@ -10,7 +10,7 @@ class LayoutScriptsModule extends Module{
     this.subscribe("ui", "layout");
   }
   
-  void receiveMessage(String channelName, String eventName, data) {
+  void receiveMessage(String channelName, String eventName,  {dynamic data}) {
       switch (eventName) {
         case 'layout':
           DivElement viewPort = this.sandBox.obtain("viewport");

@@ -19,7 +19,7 @@ class NavigationModule extends Module {
     'about-run', 'about-stop', 'contact-run', 'contact-stop', 'todolist-run', 'todolist-stop']});
   }
   
-  void receiveMessage(String channelName, String eventName, data) { 
+  void receiveMessage(String channelName, String eventName,  {dynamic data}) { 
     switch (eventName) {
       case 'navigation-run':
         this.moduleView = this.sandBox.obtain('navbar');
@@ -50,8 +50,8 @@ class NavigationModule extends Module {
       
       String moduleName = navItem.href.split('#')[1];
       if (moduleName != this.activeModuleName) {
-        this.sandBox.publish('module', '${this.activeModuleName}-stop', null);
-        this.sandBox.publish('module', '${moduleName}-run', null);
+        this.sandBox.publish('module', '${this.activeModuleName}-stop');
+        this.sandBox.publish('module', '${moduleName}-run');
       }
       
     };

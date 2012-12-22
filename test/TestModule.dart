@@ -51,9 +51,12 @@ class TestModule extends Module{
 
   TestModule(Sandbox sandBox) : super(sandBox);
 
-  void receiveMessage(String channelName, String eventName, data) {
+  void receiveMessage(String channelName, String eventName,  {dynamic data}) {
     this.lastChannel = channelName;
     this.lastEventName = eventName;
-    this.lastData = data;
+    
+    if (?data) {
+      this.lastData = data;
+    } 
   }
 }

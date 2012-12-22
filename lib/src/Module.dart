@@ -13,7 +13,7 @@ abstract class Module {
     this.isRunning = false; 
   }
   
-  void receiveMessage(String channelName, String eventName, data);
+  void receiveMessage(String channelName, String eventName, {dynamic data});
   
   void subscribeToEventsInChannels(Map<String, List<String>> channelEventMapping) {
     for (String channelName in channelEventMapping.keys) {

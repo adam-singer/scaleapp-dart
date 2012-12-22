@@ -11,7 +11,7 @@ class AboutModule extends Module{
     this.subscribeToEventsInChannels({'module' : ['about-run', 'about-stop']});
   }
   
-  void receiveMessage(String channelName, String eventName, data) {
+  void receiveMessage(String channelName, String eventName,  {dynamic data}) {
     switch (eventName) {
       case 'about-run':
         DivElement viewPort = this.sandBox.obtain('viewport');

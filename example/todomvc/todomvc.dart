@@ -33,9 +33,9 @@ class TodoMVCExampleApplication extends Core {
    this.getModule("ToDoListModule").start();
    this.getModule("LayoutScriptsModule").start();
    
-   this.mediator.publish('ui', 'layout', null);
-   this.mediator.publish('module', 'navigation-run', null);
-   this.mediator.publish('module', 'todolist-run', null);
+   this.mediator.publish('ui', 'layout');
+   this.mediator.publish('module', 'navigation-run');
+   this.mediator.publish('module', 'todolist-run');
   }
 }
 

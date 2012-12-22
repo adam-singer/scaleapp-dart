@@ -19,10 +19,17 @@ class Mediator {
     }
   }
   
-  void publish(String channelName, String eventName, data) {
-    _getSubscriberList(channelName, eventName).forEach((Module subscriber) {
-       subscriber.receiveMessage(channelName, eventName, data);
-    });
+  void publish(String channelName, String eventName,  {dynamic data}) {
+    if (?data) {
+      _getSubscriberList(channelName, eventName).forEach((Module subscriber) {
+         subscriber.receiveMessage(channelName, eventName, data:data);
+      });
+    }
+    else {
+      _getSubscriberList(channelName, eventName).forEach((Module subscriber) {
+        subscriber.receiveMessage(channelName, eventName);
+      });
+    }
   }
   
   List<Module> _getSubscriberList(String channelName, String eventName) {

@@ -11,7 +11,7 @@ class ContactModule extends Module{
     this.subscribeToEventsInChannels({'module' : ['contact-run', 'contact-stop']});
   }
   
-  void receiveMessage(String channelName, String eventName, data) { 
+  void receiveMessage(String channelName, String eventName,  {dynamic data}) { 
     switch (eventName) {
       case 'contact-run':
         DivElement viewPort = this.sandBox.obtain('viewport');
