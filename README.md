@@ -49,6 +49,11 @@ It doesn't have a direct reference to other modules - it uses the mediator to se
 Also it doesn’t use the DOM or Ajax whenever it wants. Instead, it has a reference to a Sandbox object  
 which it can ask for everything what it needs.
 
+And that really works ?
+=======================
+
+Yes! Take a look at the [running example](http://j20964.servers.jiffybox.net/dart/todoexample/index.html)
+
 Enough - show me code!
 ======================
 
